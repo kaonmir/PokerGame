@@ -21,3 +21,15 @@ bool compare(const _card A, const _card B, int SORT_BY)
 	else if (SORT_BY == SORT_BY_SHAPE && A.shape > B.shape) return true;
 	else return false;
 }
+
+void Erase_Line(int line)
+{
+	gotoxy(0, line);
+	printf("                                                                          ");
+}
+
+void gotoxy(int x, int y)
+{
+	COORD pos = { x,y };
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+}

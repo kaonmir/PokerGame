@@ -19,7 +19,7 @@ bool Two_Pair(_card player);
 bool One_pair(_card player);
 
 
-void Print_Card(_card card, int player_num, int time)
+void Print_Card(_card card, int player_num, int times)
 {
 	int x, y;
 	const char *shape[3], *number[3];
@@ -86,7 +86,7 @@ void Print_Card(_card card, int player_num, int time)
 	}
 	
 	x = CARD_START_X + CARD_GAP_X * (player_num - 1);
-	y = CARD_START_Y + CARD_GAP_Y * (time - 1);
+	y = CARD_START_Y + CARD_GAP_Y * (times - 1);
 
 	if (card.number) {
 		gotoxy(x, y);
@@ -360,8 +360,17 @@ void Print_Card(_card card, int player_num, int time)
 		printf("戌式式式式式式式式式式式戎");
 	}
 }
-void gotoxy(int x, int y)
+_card Make_Card()
 {
-	COORD pos = { x,y };
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), pos);
+	srand(time(NULL));
+
+	_card temp;
+	while (1)
+	{
+		temp.number = rand() % 13 + 1;
+		temp.shape = rand() % 4 + 1;
+		if (card[temp.shape][temp.number] == 0) break;
+	}
+	card[temp.shape][temp.number] = 1;
+	return temp;
 }

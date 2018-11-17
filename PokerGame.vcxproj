@@ -116,12 +116,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="card.c" />
+    <ClCompile Include="game.c" />
     <ClCompile Include="initialize.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mylib.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="card.h" />
+    <ClInclude Include="game.h" />
     <ClInclude Include="initialize.h" />
     <ClInclude Include="mylib.h" />
     <ClInclude Include="Setting.h" />

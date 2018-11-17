@@ -10,4 +10,6 @@
 void sort(_card *card, int SORT_BY);
 bool compare(const _card A, const _card B, int SORT_BY);
 
+void Erase_Line(int line);
+void gotoxy(int x, int y);
 #endif

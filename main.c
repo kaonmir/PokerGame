@@ -4,6 +4,7 @@
 #include "Setting.h"
 #include "card.h"
 #include "mylib.h"
+#include "game.h"
 
 void remove_cursor()
 {
@@ -17,6 +18,8 @@ int main()
 {
 	remove_cursor();
 
-	//init();
+	init();
+	Game();
+
 	getch();
 }
