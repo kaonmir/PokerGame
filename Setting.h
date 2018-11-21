@@ -12,8 +12,6 @@ typedef int bool;
 #define true 1
 #define false 0
 
-#define SEVEN 7
-
 #define MAX_PLAYER 7
 #define MAX_ID_LENGTH 100
 

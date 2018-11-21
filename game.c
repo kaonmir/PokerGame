@@ -3,11 +3,15 @@
 void Game()
 {
 	_card empty_card = { 0, 0 };
+	is_drop_allin = (int *)calloc(player_num + 1, sizeof(int));
+	before_betting = BASIC_BET;
 
 	system("cls");
 	printf("총 플레이어 수 : %d", player_num);
 	gotoxy(60, 0);
-	printf("현재 베팅 금액 : %d", betting_money);
+	printf("총 베팅 금액   : %d", betting_money);
+	gotoxy(60, 1);
+	printf("이전 베팅 금액 : %d", before_betting);
 	
 #if(!TEST)
 	// Step 3, 4
@@ -90,11 +94,20 @@ void Game()
 		k = 2;//Boss(step);
 		for (int i = 1; i <= player_num; i++)
 		{
-			Bet(k);
+			if (is_drop_allin[k] == DROP || is_drop_allin[k] == ALLIN) {
+				k = k % player_num + 1;
+				continue;
+			}
+			if (i == 1) Bet(k, 1);
+			else Bet(k, 0);
 			k = k % player_num + 1;
 		}
 		for (int i = 1; i <= player_num; i++)
 		{
+			if (is_drop_allin[k] == DROP) {
+				k = k % player_num + 1;
+				continue;
+			}
 			player_card[step][k] = Make_Card();
 			if (step == 6) Print_Card(empty_card, k, step + 1);
 			else Print_Card(player_card[step][k], k, step + 1);
@@ -133,20 +146,81 @@ int Boss(int step)
 	}
 	return max_num;
 }
-void Bet(int temp_player)
+void Bet(int temp_player, bool is_boss)
 {
 	int n;
+	int betting;
+
+	Erase_Line(4);
+
+	gotoxy(0, 2);
+	printf("%s의 차례입니다.\n\n", gamer[temp_player].id);
+	printf(" 1. Call  2. D.D   3. Half  4. Drop  5. All in\n");
+	printf(" 6. Full  ");
+	if (is_boss) printf("7. Ping(Boss)  8. Check(Boss)");
 
 	while (1) {
-		gotoxy(0, 2);
-		printf("%s의 차례입니다.\n", gamer[temp_player].id);
-		printf("어떤 베팅을 하시겠습니까?\n");
-		printf("1. Half  2. D.D  3. Call  4. Check  5. Drop");
-		gotoxy(26, 3);
+		Erase_Line(3);
+		gotoxy(0, 3);
+		printf("어떤 베팅을 하시겠습니까? ");
 		scanf("%d", &n);
+
+		switch (n)
+		{
+		case 1: //Call
+			betting = before_betting;
+			break;
+		case 2: // D.D
+			betting = before_betting * 2;
+			break;
+		case 3: //Half
+			betting = betting_money / 2;
+			break;
+		case 4: //Drop
+			is_drop_allin[temp_player] = DROP;
+			gotoxy((temp_player - 1) * 16 + 7, 9);
+			printf("    DROP");
+			betting = 0;
+			break;
+		case 5: //All in
+			betting = gamer[temp_player].money;
+			gotoxy((temp_player - 1) * 16 + 7, 9);
+			printf("   ALL IN");
+			break;
+		case 6: // Full
+			betting = betting_money;
+			break;
+		case 7: // Ping
+			if (!is_boss){
+				Betting_Error(INPUT_ERROR);
+				continue;
+			}
+			betting = BASIC_BET;
+			break;
+		case 8: // Check
+			if (!is_boss) {
+				Betting_Error(INPUT_ERROR);
+				continue;
+			}
+			betting = 0;
+			break;
+		default:
+			Betting_Error(INPUT_ERROR);
+			continue;
+		}
+
+		if (gamer[temp_player].money >= betting) break;
+		Betting_Error(MONEY_ERROR);
 	}
+
+	betting_money += betting;
+	before_betting = (betting ? betting : before_betting);
+	gamer[temp_player].money -= betting;
+
 	gotoxy(60, 0);
-	printf("현재 베팅 금액 : %d", betting_money);
+	printf("총 베팅 금액   : %d", betting_money);
+	gotoxy(60, 1);
+	printf("이전 베팅 금액 : %d", before_betting);
 }
 
 int Find_Gamer(char *id)
@@ -156,4 +230,12 @@ int Find_Gamer(char *id)
 		if(!strcmp(id, gamer[i].id)) return i;
 	}
 	return 0;
+}
+
+void Betting_Error(int error_num)
+{
+	gotoxy(0, 7);
+	printf("잘못입력하셨습니다. 다시 입력하세요.");
+	Sleep(1000);
+	Erase_Line(7);
 }
