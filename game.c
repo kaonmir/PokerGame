@@ -35,8 +35,10 @@ void Game()
 	}
 #endif
 
-	// step 3, 4 : 자신의 카드를 확인하는 과정
+	
 	int k;
+
+	// step 3, 4 : 자신의 카드를 확인하는 과정
 	char temp_id[MAX_ID_LENGTH];
 	while (1)
 	{
@@ -53,15 +55,19 @@ void Game()
 		k = Find_Gamer(temp_id);
 		if (k == 0)
 		{
-			// id 없을 때.
+			gotoxy(0, 5);
+			printf("아이디가 틀렸습니다. 엔터 키를 누르고 다시 입력하세요.");
+			getchar();
+			fflush(stdin);
+			Erase_Line(5);
 		}
 		else {
 			for (int i = 1; i <= 3; i++) Print_Card(player_card[i][k], k, i);
 
 			gotoxy(0, 5);
-			printf("아무 키나 누르고 다음 사람에게 화면을 넘기세요.");
+			printf("엔터 키를 누르고 다음 사람에게 화면을 넘기세요.");
 			getchar();
-			gotoxy(0, 5);
+			fflush(stdin);
 			Erase_Line(5);
 			
 			for (int i = 1; i <= 3; i++)			
@@ -75,8 +81,52 @@ void Game()
 	Erase_Line(2);
 	Erase_Line(3);
 
+	int step = 3;
+	while (step != 6)
+	{
+		k = 1;// Boss(step);
+		for (int i = 1; i <= player_num; i++)
+		{
+			//Bet();
+			k = k % player_num + 1;
+		}
+		for (int i = 1; i <= player_num; i++)
+		{
+			player_card[step][k] = Make_Card();
+			Print_Card(player_card[step][k], k, step + 1);
+			Sleep(400);
+
+			k = k % player_num + 1;
+		}
+
+		step++;
+	}
+	// 마지막 7번째 카드는 뒤집어 놓는다는 규칙 때문에
+	{
+		k = 1;// Boss(step);
+		for (int i = 1; i <= player_num; i++)
+		{
+			//Bet();
+			k = k % player_num + 1;
+		}
+		for (int i = 1; i <= player_num; i++)
+		{
+			player_card[step][k] = Make_Card();
+			Print_Card(empty_card, k, step + 1);
+			Sleep(400);
+
+			k = k % player_num + 1;
+		}
+		step++;
+	}
+
+	// 모든 베팅과 카드 배분은 끝났고 공개만이 남았다.
 }
 
+int Boss(int step)
+{
+
+}
 int Find_Gamer(char *id)
 {
 	for (int i = 1; i <= player_num; i++)
