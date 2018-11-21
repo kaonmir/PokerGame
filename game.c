@@ -8,6 +8,7 @@ void Game()
 	printf("총 플레이어 수 : %d\n", player_num);
 	
 #if(!TEST)
+	// Step 3, 4
 	for (int i = 1; i <= 3; i++)
 	{
 		for (int j = 1; j <= player_num; j++)
@@ -34,6 +35,7 @@ void Game()
 	}
 #endif
 
+	// step 3, 4 : 자신의 카드를 확인하는 과정
 	int k;
 	char temp_id[MAX_ID_LENGTH];
 	while (1)
@@ -70,6 +72,8 @@ void Game()
 		}
 	}
 
+	Erase_Line(2);
+	Erase_Line(3);
 
 }
 
