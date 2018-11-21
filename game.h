@@ -9,9 +9,10 @@
 #include "Setting.h"
 
 _card player_card[8][8]; // step, player
+int betting_money;
 
 void Game();
 int Find_Gamer(char *id);
-int Boss(int step);
-
+int Boss(int step); // 누가 가장 높은 카드패를 가지고 있는가
+void Bet(int temp_player);
 #endif

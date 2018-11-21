@@ -7,7 +7,7 @@
 #define SORT_BY_NUMBER 0
 #define SORT_BY_SHAPE 1
 
-void sort(_card *card, int SORT_BY);
+void sort(_card *card, int SORT_BY, int num); // 오름차순
 bool compare(const _card A, const _card B, int SORT_BY);
 
 void Erase_Line(int line);

@@ -5,7 +5,9 @@ void Game()
 	_card empty_card = { 0, 0 };
 
 	system("cls");
-	printf("총 플레이어 수 : %d\n", player_num);
+	printf("총 플레이어 수 : %d", player_num);
+	gotoxy(60, 0);
+	printf("현재 베팅 금액 : %d", betting_money);
 	
 #if(!TEST)
 	// Step 3, 4
@@ -23,19 +25,7 @@ void Game()
 		Sleep(500);
 	}
 	getchar();
-#else
-	for (int i = 1; i <= 3; i++)
-	{
-		for (int j = 1; j <= player_num; j++)
-		{
-			player_card[i][j] = Make_Card();
-			if (i == 3) Print_Card(player_card[i][j], j, i);
-			else Print_Card(empty_card, j, i);
-		}
-	}
-#endif
 
-	
 	int k;
 
 	// step 3, 4 : 자신의 카드를 확인하는 과정
@@ -47,7 +37,7 @@ void Game()
 
 		gotoxy(0, 2);
 		printf("아이디를 입력하면 나머지 두 카드가 공개됩니다.\n");
-		printf("아이디를 입력해주세요(다음으로 가려면 !를 입력해주세요) >> "); 
+		printf("아이디를 입력해주세요(다음으로 가려면 !를 입력해주세요) >> ");
 		fgets(temp_id, sizeof(temp_id), stdin);
 		temp_id[strlen(temp_id) - 1] = '\0';
 		if (temp_id[0] == '!') break;
@@ -69,31 +59,45 @@ void Game()
 			getchar();
 			fflush(stdin);
 			Erase_Line(5);
-			
-			for (int i = 1; i <= 3; i++)			
+
+			for (int i = 1; i <= 3; i++)
 			{
 				if (i == 3) Print_Card(player_card[i][k], k, i);
 				else Print_Card(empty_card, k, i);
 			}
 		}
 	}
+#else
+	for (int i = 1; i <= 3; i++)
+	{
+		for (int j = 1; j <= player_num; j++)
+		{
+			player_card[i][j] = Make_Card();
+			if (i == 3) Print_Card(player_card[i][j], j, i);
+			else Print_Card(empty_card, j, i);
+		}
+	}
+#endif
+
+	int k;
 
 	Erase_Line(2);
 	Erase_Line(3);
 
 	int step = 3;
-	while (step != 6)
+	while (step != 7)
 	{
-		k = Boss(step);
+		k = 2;//Boss(step);
 		for (int i = 1; i <= player_num; i++)
 		{
-			//Bet();
+			Bet(k);
 			k = k % player_num + 1;
 		}
 		for (int i = 1; i <= player_num; i++)
 		{
 			player_card[step][k] = Make_Card();
-			Print_Card(player_card[step][k], k, step + 1);
+			if (step == 6) Print_Card(empty_card, k, step + 1);
+			else Print_Card(player_card[step][k], k, step + 1);
 			Sleep(400);
 
 			k = k % player_num + 1;
@@ -101,25 +105,6 @@ void Game()
 
 		step++;
 	}
-	// 마지막 7번째 카드는 뒤집어 놓는다는 규칙 때문에
-	{
-		k = Boss(step);
-		for (int i = 1; i <= player_num; i++)
-		{
-			//Bet();
-			k = k % player_num + 1;
-		}
-		for (int i = 1; i <= player_num; i++)
-		{
-			player_card[step][k] = Make_Card();
-			Print_Card(empty_card, k, step + 1);
-			Sleep(400);
-
-			k = k % player_num + 1;
-		}
-		step++;
-	}
-
 	// 모든 베팅과 카드 배분은 끝났고 공개만이 남았다.
 }
 
@@ -140,7 +125,7 @@ int Boss(int step)
 		else if (k = Full_House(temp_card, step));		//풀하우스
 		else if (k = Flush(temp_card, step));			//플러시
 		else if (k = Straight(temp_card, step));		//스트레이트
-		else if (k = Three_of_a_Kind(temp_card, step));//트리플
+		else if (k = Three_of_a_Kind(temp_card, step));	//트리플
 		else if (k = Two_Pair(temp_card, step));		//투페어
 		else if (k = One_pair(temp_card, step));		//원페어
 
@@ -148,6 +133,22 @@ int Boss(int step)
 	}
 	return max_num;
 }
+void Bet(int temp_player)
+{
+	int n;
+
+	while (1) {
+		gotoxy(0, 2);
+		printf("%s의 차례입니다.\n", gamer[temp_player].id);
+		printf("어떤 베팅을 하시겠습니까?\n");
+		printf("1. Half  2. D.D  3. Call  4. Check  5. Drop");
+		gotoxy(26, 3);
+		scanf("%d", &n);
+	}
+	gotoxy(60, 0);
+	printf("현재 베팅 금액 : %d", betting_money);
+}
+
 int Find_Gamer(char *id)
 {
 	for (int i = 1; i <= player_num; i++)

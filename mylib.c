@@ -1,10 +1,10 @@
 #include "mylib.h"
 
-void sort(_card *card, int SORT_BY)
+void sort(_card *card, int SORT_BY, int num)
 {
 	_card temp;
-	for (int i = 0; i < SEVEN; i++) {
-		for (int j = i + 1; j < SEVEN; j++) {
+	for (int i = 1; i <= num; i++) {
+		for (int j = i + 1; j <= num; j++) {
 			if (compare(card[i], card[j], SORT_BY)) {
 				temp = card[i];
 				card[i] = card[j];

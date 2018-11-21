@@ -359,50 +359,61 @@ _card Make_Card()
 
 int Royal_Flush(_card player[], int step)
 {
+	if (step < 5) return 0;
 	return 0;
 }
 
 int Straight_Flush(_card player[], int step)
 {
+	if (step < 5) return 0;
 	return 0;
 }
 
 int Four_of_a_Kind(_card player[], int step)
 {
+	if (step < 4) return 0;
 	return 0;
 }
 
 int Full_House(_card player[], int step)
 {
+	if (step < 5) return 0;
 	return 0;
 }
 
 int Flush(_card player[], int step)
 {
+	if (step < 5) return 0;
 	return 0;
 }
 
 int	Straight(_card player[], int step)
 {
+	if (step < 5) return 0;
 	return 0;
 }
 
 int Three_of_a_Kind(_card player[], int step)
 {
+	if (step < 3) return 0;
 	return 0;
 }
 
 int Two_Pair(_card player[], int step)
 {
+	if (step < 4) return 0;
 	return 0;
 }
 
 int One_pair(_card player[], int step)
 {
+	if (step < 2) return 0;
 	return 0;
 }
 
 int Top(_card player[], int step)
 {
+	sort(player, SORT_BY_NUMBER, step);
+
 	return 0;
 }
