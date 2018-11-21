@@ -84,7 +84,7 @@ void Game()
 	int step = 3;
 	while (step != 6)
 	{
-		k = 1;// Boss(step);
+		k = Boss(step);
 		for (int i = 1; i <= player_num; i++)
 		{
 			//Bet();
@@ -103,7 +103,7 @@ void Game()
 	}
 	// 마지막 7번째 카드는 뒤집어 놓는다는 규칙 때문에
 	{
-		k = 1;// Boss(step);
+		k = Boss(step);
 		for (int i = 1; i <= player_num; i++)
 		{
 			//Bet();
@@ -125,7 +125,28 @@ void Game()
 
 int Boss(int step)
 {
+	int k, max = 0, max_num = 0;
+	int *chk;
+	chk = (int *)calloc(player_num+1, sizeof(int));
+	_card temp_card[8];
 
+	for (int i = 1; i <= player_num; i++)
+	{
+		for (int j = 1; j <= step; j++) temp_card[j] = player_card[j][i];
+	
+		if (k = Royal_Flush(temp_card, step));			//로얄 스트레이트 플러시
+		else if (k = Straight_Flush(temp_card, step));	//스트레이트 플러시
+		else if (k = Four_of_a_Kind(temp_card, step));	//포카드
+		else if (k = Full_House(temp_card, step));		//풀하우스
+		else if (k = Flush(temp_card, step));			//플러시
+		else if (k = Straight(temp_card, step));		//스트레이트
+		else if (k = Three_of_a_Kind(temp_card, step));//트리플
+		else if (k = Two_Pair(temp_card, step));		//투페어
+		else if (k = One_pair(temp_card, step));		//원페어
+
+		if (max < k) { max = k; max_num = i;}
+	}
+	return max_num;
 }
 int Find_Gamer(char *id)
 {

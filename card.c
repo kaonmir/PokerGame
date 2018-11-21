@@ -1,24 +1,6 @@
 #include "card.h"
 
 
-bool Royal_Flush(_card player)
-{
-}
-bool Four_of_a_Kind(_card player)
-{
-
-	sort(&player, SORT_BY_NUMBER);;
-}
-bool Straight_Flush(_card player);
-bool Four_of_a_Kind(_card player);
-bool Full_House(_card player);
-bool Flush(_card player);
-bool Straight();
-bool Three_of_a_Kind(_card player);
-bool Two_Pair(_card player);
-bool One_pair(_card player);
-
-
 void Print_Card(_card card, int player_num, int times)
 {
 	int x, y;
@@ -373,4 +355,54 @@ _card Make_Card()
 	}
 	card[temp.shape][temp.number] = 1;
 	return temp;
+}
+
+int Royal_Flush(_card player[], int step)
+{
+	return 0;
+}
+
+int Straight_Flush(_card player[], int step)
+{
+	return 0;
+}
+
+int Four_of_a_Kind(_card player[], int step)
+{
+	return 0;
+}
+
+int Full_House(_card player[], int step)
+{
+	return 0;
+}
+
+int Flush(_card player[], int step)
+{
+	return 0;
+}
+
+int	Straight(_card player[], int step)
+{
+	return 0;
+}
+
+int Three_of_a_Kind(_card player[], int step)
+{
+	return 0;
+}
+
+int Two_Pair(_card player[], int step)
+{
+	return 0;
+}
+
+int One_pair(_card player[], int step)
+{
+	return 0;
+}
+
+int Top(_card player[], int step)
+{
+	return 0;
 }
