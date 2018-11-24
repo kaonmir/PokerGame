@@ -8,7 +8,7 @@
 
 #define CARD_START_X 6
 #define CARD_GAP_X 16
-#define CARD_START_Y 10
+#define CARD_START_Y 12
 #define CARD_GAP_Y 2
 
 int card[5][14]; // 카드 중복 체크
