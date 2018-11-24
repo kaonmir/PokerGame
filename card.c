@@ -414,13 +414,6 @@ int One_pair(_card player[], int step)
 int Top(_card player[], int step)
 {
 	_card temp[8];
-	for(int i = 1; i <= step; i++) temp[i] = player[i];
-	sort(temp, SORT_BY_NUMBER, step);
-//	for(int i = 1; i <= )
-	for (int i = 1; i <= step; i++) {
-		if (temp[player_num].number == player[i].number && temp[player_num].shape == player[i].shape)
-		{
-			return 16 * 16 * 1 + temp[player_num].number * 16 + temp[player_num].shape;
-		}
-	}
+	for (int i = 1; i <= step; i++) if (player[i].number == 1) player[i].number = 14;
+	sort(temp, SORT_BY_NUMBER_FOURTEEN, step);
 }

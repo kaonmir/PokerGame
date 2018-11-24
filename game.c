@@ -93,9 +93,9 @@ void Game()
 				k = k % player_num + 1;
 				continue;
 			}
-			player_card[step][k] = Make_Card();
+			player_card[step+1][k] = Make_Card();
 			if (step == 6) Print_Card(empty_card, k, step + 1);
-			else Print_Card(player_card[step][k], k, step + 1);
+			else Print_Card(player_card[step+1][k], k, step + 1);
 			Sleep(400);
 
 			k = k % player_num + 1;
@@ -109,9 +109,7 @@ void Game()
 		for (int j = 1; j <= player_num; j++)
 		{
 			player_card[i][j] = Make_Card();
-
-			if (i == 3) Print_Card(player_card[i][j], j, i);
-			else Print_Card(empty_card, j, i);
+			Print_Card(player_card[i][j], j, i);
 		}
 	}
 
@@ -124,35 +122,23 @@ void Game()
 		k = 2;//Boss(step);
 		for (int i = 1; i <= player_num; i++)
 		{
-			if (is_drop_allin[k] == DROP || is_drop_allin[k] == ALLIN) {
-				k = k % player_num + 1;
-				continue;
-			}
-			if (i == 1) Bet(k, 1);
-			else Bet(k, 0);
-			k = k % player_num + 1;
-		}
-		for (int i = 1; i <= player_num; i++)
-		{
-			if (is_drop_allin[k] == DROP) {
-				k = k % player_num + 1;
-				continue;
-			}
-			player_card[step][k] = Make_Card();
-			if (step == 6) Print_Card(empty_card, k, step + 1);
-			else Print_Card(player_card[step][k], k, step + 1);
-			Sleep(400);
+			player_card[step+1][k] = Make_Card();
+			Print_Card(player_card[step+1][k], k, step + 1);
 
 			k = k % player_num + 1;
 		}
-
 		step++;
 	}
 #endif
 
 #if(TEST)
+	Erase_Line(0);
+	Erase_Line(1);
+	Erase_Line(2);
+
 	_card temp_card[8];
-	for (int j = 1; j <= 7; j++) temp_card[j] = player_card[j][1];
+	for (int i = 1; i <= 7; i++) temp_card[i] = player_card[i][1];
+	gotoxy(0, 0);
 	printf("%x", Top(temp_card, 7));
 #endif
 
@@ -302,6 +288,6 @@ void Print_Windows()
 	for (int i = 1; i <= player_num; i++)
 	{
 		gotoxy(WINDOWS_X_MONEY, i - 1);
-		printf("Player %d의 코인: %d     ", i, gamer[i].money);
+		printf("Player %d의 코인: %d         ", i, gamer[i].money);
 	}
 }
