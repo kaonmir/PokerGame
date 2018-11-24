@@ -3,8 +3,8 @@
 void sort(_card *card, int SORT_BY, int num)
 {
 	_card temp;
-	for (int i = 1; i <= num; i++) {
-		for (int j = i + 1; j <= num; j++) {
+	for (int i = start; i <= end; i++) {
+		for (int j = i + 1; j <= end; j++) {
 			if (compare(card[i], card[j], SORT_BY)) {
 				temp = card[i];
 				card[i] = card[j];

@@ -357,63 +357,119 @@ _card Make_Card()
 	return temp;
 }
 
-int Royal_Flush(_card player[], int step)
+int Royal_Flush(_card player[], int start, int end)
 {
-	if (step < 5) return 0;
+	if (end - start < 5) return 0;
 	return 0;
 }
 
-int Straight_Flush(_card player[], int step)
+int Straight_Flush(_card player[], int start, int end)
 {
-	if (step < 5) return 0;
+	if (end - start < 5) return 0;
 	return 0;
 }
 
-int Four_of_a_Kind(_card player[], int step)
+int Four_of_a_Kind(_card player[], int start, int end)
 {
-	if (step < 4) return 0;
+	if (end - start < 4) return 0;
 	return 0;
 }
 
-int Full_House(_card player[], int step)
+int Full_House(_card player[], int start, int end)
 {
-	if (step < 5) return 0;
+	if (end - start < 5) return 0;
 	return 0;
 }
 
-int Flush(_card player[], int step)
+int Flush(_card player[], int start, int end)
 {
-	if (step < 5) return 0;
+	int i, cnt = 1;
+
+	if (end - start < 4) return 0;
+	sort(player, SORT_BY_SHAPE, start, end);
+	for (i = end - 1; i >= start; i--)
+	{
+		if (cnt == 4) break;
+
+		if (player[i].shape == player[i + 1].shape) cnt++;
+		else cnt = 1;
+	}
+	if (cnt == 4)
+		for (int j = end; j >= start; j++)
+			if (player[j].shape == player[i + 1].shape)
+				return 6 * JOKBO + player[j].number * NUMBER + player[j].shape * SHAPE;
 	return 0;
 }
-
-int	Straight(_card player[], int step)
+int	Straight(_card player[], int start, int end)
 {
-	if (step < 5) return 0;
+	int cnt = 1;
+	int before_num;
+
+	if (end - start < 5) return 0;
+	sort(player, SORT_BY_NUMBER_ONE, start, end);
+	before_num = player[end].number;
+
+	for (int i = end - 1; i >= start; i--)
+	{
+		if (cnt == 5) break;
+
+		if (player[i].number == before_num - 1) {
+			cnt++; before_num--;
+		}
+		else {
+			cnt = 1; before_num = player[i].number;
+		}
+	}
+	if (cnt == 5)
+		for (int i = end; i >= start; i++)
+			if (player[i].number == before_num - 4)
+				return 5 * JOKBO + player[i].number * NUMBER + player[i].shape * SHAPE;
 	return 0;
 }
-
-int Three_of_a_Kind(_card player[], int step)
+int Three_of_a_Kind(_card player[], int start, int end)
 {
-	if (step < 3) return 0;
+	if (end - start < 3) return 0;
+	sort(player, SORT_BY_NUMBER_FOURTEEN, start, end);
+	for (int i = end; i > start + 1; i--) {
+		if (player[i].number == player[i - 1].number && player[i - 1].number == player[i - 2].number) {
+			if (player[i].number == 1) player[i].number = 14;
+			return 4 * JOKBO + player[i].number * NUMBER + player[i].shape * SHAPE;
+		}
+	}
 	return 0;
 }
-
-int Two_Pair(_card player[], int step)
+int Two_Pair(_card player[], int start, int end)
 {
-	if (step < 4) return 0;
+	int cnt = 0;
+	_card return_card;
+
+	if (end - start < 4) return 0;
+	sort(player, SORT_BY_NUMBER_FOURTEEN, start, end);
+	for (int i = end; i > start; i--) {
+		if (player[i].number == player[i - 1].number){
+			if (cnt == 0) return_card = player[i];
+			cnt++;
+		}
+	}
+	if (return_card.number == 1) return_card.number = 14;
+	if(cnt >= 1) return 3 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
 	return 0;
 }
-
-int One_pair(_card player[], int step)
+int One_pair(_card player[], int start, int end)
 {
-	if (step < 2) return 0;
+	if (end - start < 2) return 0;
+	sort(player, SORT_BY_NUMBER_FOURTEEN, start, end);
+	for (int i = end; i > start; i--) {
+		if (player[i].number == player[i - 1].number) {
+			if (player[i].number == 1) player[i].number = 14;
+			return 2 * JOKBO + player[i].number * NUMBER + player[i].shape * SHAPE;
+		}
+	}
 	return 0;
 }
-
-int Top(_card player[], int step)
+int Top(_card player[], int start, int end)
 {
-	_card temp[8];
-	for (int i = 1; i <= step; i++) if (player[i].number == 1) player[i].number = 14;
-	sort(temp, SORT_BY_NUMBER_FOURTEEN, step);
+	sort(player, SORT_BY_NUMBER_FOURTEEN, start, end);
+	if (player[end].number == 1) player[end].number = 14;
+	return 1 * JOKBO + player[end].number * NUMBER + player[end].shape * SHAPE;
 }

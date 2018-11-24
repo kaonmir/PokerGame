@@ -76,7 +76,7 @@ void Game()
 	int step = 3;
 	while (step != 7)
 	{
-		k = 2;//Boss(step);
+		k = Boss(step);
 		for (int i = 1; i <= player_num; i++)
 		{
 			if (is_drop_allin[k] == DROP || is_drop_allin[k] == ALLIN) {
@@ -139,7 +139,7 @@ void Game()
 	_card temp_card[8];
 	for (int i = 1; i <= 7; i++) temp_card[i] = player_card[i][1];
 	gotoxy(0, 0);
-	printf("%x", Top(temp_card, 7));
+	printf("%x", Top(temp_card, 3, 6));
 #endif
 
 	// 모든 베팅과 카드 배분은 끝났고 공개만이 남았다.
@@ -158,15 +158,15 @@ int Boss(int step)
 	{
 		for (int j = 1; j <= step; j++) temp_card[j] = player_card[j][i];
 	
-		if (k = Royal_Flush(temp_card, step));			//로얄 스트레이트 플러시
-		else if (k = Straight_Flush(temp_card, step));	//스트레이트 플러시
-		else if (k = Four_of_a_Kind(temp_card, step));	//포카드
-		else if (k = Full_House(temp_card, step));		//풀하우스
-		else if (k = Flush(temp_card, step));			//플러시
-		else if (k = Straight(temp_card, step));		//스트레이트
-		else if (k = Three_of_a_Kind(temp_card, step));	//트리플
-		else if (k = Two_Pair(temp_card, step));		//투페어
-		else if (k = One_pair(temp_card, step));		//원페어
+		if (k = Royal_Flush(temp_card, 3, step));			//로얄 스트레이트 플러시
+		else if (k = Straight_Flush(temp_card, 3, step));	//스트레이트 플러시
+		else if (k = Four_of_a_Kind(temp_card, 3, step));	//포카드
+		else if (k = Full_House(temp_card, 3, step));		//풀하우스
+		else if (k = Flush(temp_card, 3, step));			//플러시
+		else if (k = Straight(temp_card, 3, step));			//스트레이트
+		else if (k = Three_of_a_Kind(temp_card, 3, step));	//트리플
+		else if (k = Two_Pair(temp_card, 3, step));			//투페어
+		else if (k = One_pair(temp_card, 3, step));			//원페어
 
 		if (max < k) { max = k; max_num = i;}
 	}
