@@ -359,45 +359,110 @@ _card Make_Card()
 
 int Royal_Flush(_card player[], int start, int end)
 {
+	int cnt = 1;
+	_card return_card = player[end];
+
 	if (end - start < 5) return 0;
+	sort(player, SORT_BY_SHAPE, start, end);
+
+	for (int i = end - 1; i >= start; i--)
+	{
+		if (cnt == 5) break;
+		if (return_card.number != 13) {
+			cnt = 1;
+			return_card = player[i];
+		}
+
+		if (player[i].number == player[i + 1].number - 1 && player[i].shape == player[i + 1].shape) cnt++;
+		else {
+			cnt = 1;
+			return_card = player[i];
+		}
+	}
+	if (cnt == 5)
+		return 10 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
 	return 0;
 }
 
 int Straight_Flush(_card player[], int start, int end)
 {
+	int cnt = 1;
+	_card return_card = player[end];
+
 	if (end - start < 5) return 0;
+	sort(player, SORT_BY_SHAPE, start, end);
+
+	for (int i = end - 1; i >= start; i--)
+	{
+		if (cnt == 5) break;
+
+		if (player[i].number == player[i + 1].number-1 && player[i].shape == player[i + 1].shape) cnt++;
+		else {
+			cnt = 1;
+			return_card = player[i];
+		}
+	}
+	if(cnt == 5)
+		return 10 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
 	return 0;
 }
-
 int Four_of_a_Kind(_card player[], int start, int end)
 {
-	if (end - start < 4) return 0;
-	return 0;
-}
+	int cnt = 1;
+	_card return_card = player[end];
 
+	if (end - start < 4) return 0;
+	for (int i = end-1; i >= start; i--)
+	{
+		if (cnt == 4) break;
+		if (player[i].number == player[i + 1].number) cnt++;
+		else {
+			cnt = 1; return_card = player[i];
+		}
+	}
+	if(cnt == 4)
+		return 8 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
+}
 int Full_House(_card player[], int start, int end)
 {
+	int cnt = 0;
+	int return_card_num1, return_card_num2;
 	if (end - start < 5) return 0;
+	sort(player, SORT_BY_NUMBER_FOURTEEN, start, end);
+
+	if (return_card_num1 = Three_of_a_Kind(player, start, end - 2)) cnt++;
+	if (return_card_num2 = Three_of_a_Kind(player, start + 2, end)) cnt++;
+	if (Three_of_a_Kind(player, start + 3, end - 3)) cnt--;
+
+	if (cnt == 2) return return_card_num2;
+	else if (cnt == 1) {
+		for (int i = start; i < end - 1; i++) {
+			if (player[i - 1].number != player[i].number && player[i].number == player[i + 1].number && player[i + 1].number != player[i + 2].number) {
+				if (return_card_num1) return return_card_num1 + 3 * JOKBO;
+				if (return_card_num2) return return_card_num2 + 3 * JOKBO;
+			}
+		}
+	}
 	return 0;
 }
-
 int Flush(_card player[], int start, int end)
 {
 	int i, cnt = 1;
+	_card return_card = player[end];
 
-	if (end - start < 4) return 0;
+	if (end - start < 5) return 0;
 	sort(player, SORT_BY_SHAPE, start, end);
 	for (i = end - 1; i >= start; i--)
 	{
-		if (cnt == 4) break;
+		if (cnt == 5) break;
 
 		if (player[i].shape == player[i + 1].shape) cnt++;
-		else cnt = 1;
+		else {
+			cnt = 1; return_card = player[i];
+		}
 	}
-	if (cnt == 4)
-		for (int j = end; j >= start; j++)
-			if (player[j].shape == player[i + 1].shape)
-				return 6 * JOKBO + player[j].number * NUMBER + player[j].shape * SHAPE;
+	if(cnt == 5)
+		return 6 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
 	return 0;
 }
 int	Straight(_card player[], int start, int end)
@@ -412,6 +477,8 @@ int	Straight(_card player[], int start, int end)
 	for (int i = end - 1; i >= start; i--)
 	{
 		if (cnt == 5) break;
+		if (cnt == 4 && player[end].number == 13 && player[start].number == 1)
+			return 5 * JOKBO + 14 * NUMBER + player[start].shape * SHAPE;
 
 		if (player[i].number == before_num - 1) {
 			cnt++; before_num--;
@@ -420,11 +487,10 @@ int	Straight(_card player[], int start, int end)
 			cnt = 1; before_num = player[i].number;
 		}
 	}
-	if (cnt == 5)
-		for (int i = end; i >= start; i++)
-			if (player[i].number == before_num - 4)
-				return 5 * JOKBO + player[i].number * NUMBER + player[i].shape * SHAPE;
-	return 0;
+	if (cnt != 5) return 0;
+	for (int i = end; i >= start; i++)
+		if (player[i].number == before_num - 4)
+			return 5 * JOKBO + player[i].number * NUMBER + player[i].shape * SHAPE;
 }
 int Three_of_a_Kind(_card player[], int start, int end)
 {
