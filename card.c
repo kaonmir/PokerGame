@@ -367,7 +367,7 @@ int Royal_Flush(_card player[], int start, int end)
 
 	for (int i = end - 1; i >= start; i--)
 	{
-		if (cnt == 5) break;
+		if (cnt == 4) break;
 		if (return_card.number != 13) {
 			cnt = 1;
 			return_card = player[i];
@@ -379,8 +379,10 @@ int Royal_Flush(_card player[], int start, int end)
 			return_card = player[i];
 		}
 	}
-	if (cnt == 5)
-		return 10 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
+	if (cnt != 4) return 0;
+	for (int i = start; i <= end; i++)
+		if (player[i].number == 1 && player[i].shape == return_card.shape)
+			return 10 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
 	return 0;
 }
 
@@ -403,7 +405,7 @@ int Straight_Flush(_card player[], int start, int end)
 		}
 	}
 	if(cnt == 5)
-		return 10 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
+		return 9 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
 	return 0;
 }
 int Four_of_a_Kind(_card player[], int start, int end)
