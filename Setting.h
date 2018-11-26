@@ -2,7 +2,7 @@
 #ifndef __H_SETTING_INCLUDED_
 #define __H_SETTING_INCLUDED_
 
-#define TEST 1
+#define TEST 0
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,12 +13,12 @@ typedef int bool;
 #define false 0
 
 #define MAX_PLAYER 7
-#define MAX_ID_LENGTH 100
+#define MAX_ID_LENGTH 10
 
 // 숫자가 클 수록 족보가 높다
 typedef enum _card_shape {
-	Diamond = 1,
-	Club,
+	Club = 1,
+	Diamond,
 	Hearts,
 	Spade
 } _card_shape;
@@ -36,5 +36,5 @@ typedef struct _player {
 } _player;
 
 int player_num;
-_player *gamer;
+_player **gamer;
 #endif

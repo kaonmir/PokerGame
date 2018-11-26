@@ -1,6 +1,6 @@
 #include "mylib.h"
 
-void sort(_card *card, int SORT_BY, int num)
+void sort(_card *card, int SORT_BY, int start, int end)
 {
 	_card temp;
 	for (int i = start; i <= end; i++) {
@@ -35,14 +35,14 @@ bool compare(const _card A, const _card B, int SORT_BY)
 		else if (A.shape == B.shape && A.number > B.number) return true;
 		else return false;
 	default:
-		break;
+		return false;
 	}
 }
 
 void Erase_Line(int line)
 {
 	gotoxy(0, line);
-	printf("                                                                                        ");
+	printf("                                                                      ");
 }
 
 void gotoxy(int x, int y)

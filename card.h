@@ -29,7 +29,7 @@ int Flush(_card player[], int start, int end);				//플러시					// 6
 int Straight(_card player[], int start, int end);			//스트레이트				// 5
 int Three_of_a_Kind(_card player[], int start, int end);	//트리플					// 4
 int Two_Pair(_card player[], int start, int end);			//투페어					// 3
-int One_pair(_card player[], int start, int end);			//원페어					// 2
+int One_Pair(_card player[], int start, int end);			//원페어					// 2
 int Top(_card player[], int start, int end);				//노페어					// 1
 
 void Print_Card(_card card, int player_num, int times); // 카드 그림 출력 함수

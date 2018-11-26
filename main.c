@@ -17,9 +17,11 @@ void remove_cursor()
 int main()
 {
 	remove_cursor();
+	system("mode con cols=160 lines=40");
 
 	init();
 	Game();
 
+	// end ±â·Ï
 	getch();
 }

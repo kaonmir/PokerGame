@@ -414,6 +414,8 @@ int Four_of_a_Kind(_card player[], int start, int end)
 	_card return_card = player[end];
 
 	if (end - start < 4) return 0;
+	sort(player, SORT_BY_NUMBER_FOURTEEN, start, end);
+
 	for (int i = end-1; i >= start; i--)
 	{
 		if (cnt == 4) break;
@@ -523,7 +525,7 @@ int Two_Pair(_card player[], int start, int end)
 	if(cnt >= 1) return 3 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
 	return 0;
 }
-int One_pair(_card player[], int start, int end)
+int One_Pair(_card player[], int start, int end)
 {
 	if (end - start < 2) return 0;
 	sort(player, SORT_BY_NUMBER_FOURTEEN, start, end);

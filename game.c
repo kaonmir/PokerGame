@@ -77,6 +77,22 @@ void Game()
 	while (step != 7)
 	{
 		k = Boss(step);
+
+		for (int i = 1; i <= player_num; i++)
+		{
+			if (is_drop_allin[k] == DROP) {
+				k = k % player_num + 1;
+				continue;
+			}
+			player_card[step + 1][k] = Make_Card();
+			if (step == 6) Print_Card(empty_card, k, step + 1);
+			else Print_Card(player_card[step + 1][k], k, step + 1);
+			Sleep(400);
+
+			k = k % player_num + 1;
+		}
+		step++;
+
 		for (int i = 1; i <= player_num; i++)
 		{
 			if (is_drop_allin[k] == DROP || is_drop_allin[k] == ALLIN) {
@@ -87,21 +103,6 @@ void Game()
 			else Bet(k, 0);
 			k = k % player_num + 1;
 		}
-		for (int i = 1; i <= player_num; i++)
-		{
-			if (is_drop_allin[k] == DROP) {
-				k = k % player_num + 1;
-				continue;
-			}
-			player_card[step+1][k] = Make_Card();
-			if (step == 6) Print_Card(empty_card, k, step + 1);
-			else Print_Card(player_card[step+1][k], k, step + 1);
-			Sleep(400);
-
-			k = k % player_num + 1;
-		}
-
-		step++;
 	}
 #else
 	for (int i = 1; i <= 3; i++)
@@ -131,19 +132,9 @@ void Game()
 	}
 #endif
 
-#if(TEST)
-	Erase_Line(0);
-	Erase_Line(1);
-	Erase_Line(2);
-
-	_card temp_card[8];
-	for (int i = 1; i <= 7; i++) temp_card[i] = player_card[i][1];
-	gotoxy(0, 0);
-	printf("%x", Top(temp_card, 3, 6));
-#endif
-
 	// 모든 베팅과 카드 배분은 끝났고 공개만이 남았다.
-	// 플레이어의 남은 돈의 수도 출력하자(귀찮...)
+
+
 
 }
 
@@ -153,6 +144,7 @@ int Boss(int step)
 	int *chk;
 	chk = (int *)calloc(player_num+1, sizeof(int));
 	_card temp_card[8];
+	Erase_Line(CARD_START_Y - 2);
 
 	for (int i = 1; i <= player_num; i++)
 	{
@@ -166,10 +158,13 @@ int Boss(int step)
 		else if (k = Straight(temp_card, 3, step));			//스트레이트
 		else if (k = Three_of_a_Kind(temp_card, 3, step));	//트리플
 		else if (k = Two_Pair(temp_card, 3, step));			//투페어
-		else if (k = One_pair(temp_card, 3, step));			//원페어
+		else if (k = One_Pair(temp_card, 3, step));			//원페어
+		else k = Top(temp_card, 3, step);
 
 		if (max < k) { max = k; max_num = i;}
 	}
+
+	Print_status(BOSS, max_num);
 	return max_num;
 }
 void Bet(int temp_player, bool is_boss)
@@ -180,7 +175,7 @@ void Bet(int temp_player, bool is_boss)
 	Erase_Line(5);
 
 	gotoxy(0, 2);
-	printf("%s의 차례입니다.\n\n", gamer[temp_player].id);
+	printf("%s의 차례입니다.\n\n", gamer[temp_player]->id);
 	printf(" 1. Call  2. D.D   3. Half  4. Drop  5. All in\n");
 	if (is_boss) printf(" 6. Full  7. Ping(Boss)  8. Check(Boss)");
 	else printf(" 6. Full");
@@ -208,7 +203,7 @@ void Bet(int temp_player, bool is_boss)
 			break;
 		case 5: //All in
 			is_drop_allin[temp_player] = ALLIN;
-			betting = gamer[temp_player].money;
+			betting = gamer[temp_player]->money;
 			Print_status(ALLIN, temp_player);
 			break;
 		case 6: // Full
@@ -233,22 +228,21 @@ void Bet(int temp_player, bool is_boss)
 			continue;
 		}
 
-		if (gamer[temp_player].money >= betting) break;
+		if (gamer[temp_player]->money >= betting) break;
 		Betting_Error(MONEY_ERROR);
 	}
 
 	betting_money += betting;
 	before_betting = (betting ? betting : before_betting);
-	gamer[temp_player].money -= betting;
+	gamer[temp_player]->money -= betting;
 
 	Print_Windows();
 }
-
 int Find_Gamer(char *id)
 {
 	for (int i = 1; i <= player_num; i++)
 	{
-		if(!strcmp(id, gamer[i].id)) return i;
+		if(!strcmp(id, gamer[i]->id)) return i;
 	}
 	return 0;
 }
@@ -273,11 +267,17 @@ void Print_status(int status, int num)
 {
 	int x = CARD_START_X + CARD_GAP_X * (num - 1);
 	int y = CARD_START_Y - 1;
+
+	if (status == BOSS) {
+		gotoxy(x, y - 1);
+		printf("     BOSS");
+		return;
+	}
 	gotoxy(x, y);
-	
 	if (status == RESET)      printf("           ");
 	else if (status == DROP)  printf("     DROP");
 	else if (status == ALLIN) printf("    ALL IN");
+	return;
 }
 void Print_Windows()
 {
@@ -288,6 +288,6 @@ void Print_Windows()
 	for (int i = 1; i <= player_num; i++)
 	{
 		gotoxy(WINDOWS_X_MONEY, i - 1);
-		printf("Player %d의 코인: %d         ", i, gamer[i].money);
+		printf("Player %d의 코인: %d         ", i, gamer[i]->money);
 	}
 }

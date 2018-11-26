@@ -19,7 +19,7 @@ bool Call_Player()
 
 	fscanf(fi, "%d", &all_player);
 
-	player = (_player *)malloc(sizeof(_player) * (all_player + 1));
+	player = (_player *)malloc(sizeof(_player) * (all_player + 10));
 
 	for (int i = 1; i <= all_player; i++)
 		fscanf(fi, "%s %d\n", player[i].id, &player[i].money);
@@ -29,14 +29,17 @@ bool Call_Player()
 }
 int Make_Player()
 {
-	realloc(player, sizeof(_player) * (++all_player + 1));
+	all_player++;
 
 	while (1) {
 		printf("사용하실 아이디를 입력해 주세요. >> ");
-		scanf("%s", &player[all_player].id);
+		scanf("%s", player[all_player].id);
 		if (player[all_player].id[0] != '!') break;
 		printf("아이디 첫 문자는 !가 될 수 없어요,\n\n");
-	}	
+	}
+	//이미 있는 아이디;
+	// ID length
+
 	printf("가입 기념 100코인을 지급합니다.\n");
 	player[all_player].money = 100;
 	return all_player;
@@ -53,7 +56,7 @@ void init()
 	}
 	system("cls");
 	printf("총 플레이어의 수 : %d\n", player_num);
-	gamer = (_player *)malloc(sizeof(_player) * (player_num + 1));
+	gamer = (_player **)malloc(sizeof(_player *) * (player_num + 1));
 
 	for (int i = 1; i <= player_num; i++)
 	{
@@ -67,23 +70,24 @@ void init()
 			else k = Find_Player(temp);
 
 			if (k) {
-				gamer[i] = player[k];
+				gamer[i] = &(player[k]);
 				break;
 			}
 			printf("아이디가 존재하지 않습니다.\n다시 입력 해주세요\n\n");
 		}
-		printf("플레이어 %d에 %s님이 등록되었습니다.\n\n", i, gamer[i].id);
+		printf("플레이어 %d에 %s님이 등록되었습니다.\n\n", i, gamer[i]->id);
 	}
 
+	Sleep(400);
 	system("cls");
 	printf("자 그럼 게임을 시작하겠습니다.\n");
-	Sleep(1000);
-	Shuffling();
+	//Sleep(1000);
+	//Shuffling();
 #else
 	player_num = 2;
-	gamer = (_player *)malloc(sizeof(_player) * (player_num + 1));
-	gamer[1] = player[1];
-	gamer[2] = player[2];
+	gamer = (_player **)malloc(sizeof(_player *) * (player_num + 1));
+	gamer[1] = &(player[1]);
+	gamer[2] = &(player[2]);
 	return;
 #endif
 }

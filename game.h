@@ -11,7 +11,7 @@
 #define BASIC_BET 5
 
 #define WINDOWS_X_BETTING 30
-#define WINDOWS_X_MONEY 55
+#define WINDOWS_X_MONEY 70
 
 #define INPUT_ERROR 1
 #define MONEY_ERROR 2
@@ -19,6 +19,7 @@
 #define RESET 0
 #define DROP 1
 #define ALLIN 2
+#define BOSS 3
 
 
 _card player_card[8][8]; // step, player
