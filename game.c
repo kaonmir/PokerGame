@@ -74,10 +74,10 @@ void Game()
 	Erase_Line(3);
 
 	int step = 3;
+	k = 1;
+
 	while (step != 7)
 	{
-		k = Boss(step);
-
 		for (int i = 1; i <= player_num; i++)
 		{
 			if (is_drop_allin[k] == DROP) {
@@ -93,6 +93,8 @@ void Game()
 		}
 		step++;
 
+		k = Boss(step);
+
 		for (int i = 1; i <= player_num; i++)
 		{
 			if (is_drop_allin[k] == DROP || is_drop_allin[k] == ALLIN) {
@@ -104,6 +106,29 @@ void Game()
 			k = k % player_num + 1;
 		}
 	}
+
+	Erase_Line(2);
+	Erase_Line(3);
+	Erase_Line(4);
+	Erase_Line(5);
+
+	gotoxy(0, 2);
+	printf("이제 카드를 공개하겠습니다.");
+	getch();
+
+	for (int i = 1; i <= 7; i++)
+	{
+		for (int j = 1; j <= player_num; j++)
+			Print_Card(player_card[i][j], j, i);
+	}
+	k = Boss(7);
+	gotoxy(0, 3);
+	printf("게임의 우승자는 플레이어 %d입니다.", k);
+	gamer[k]->money += betting_money;
+	Print_Windows();
+	getch();
+	getch();
+
 #else
 	for (int i = 1; i <= 3; i++)
 	{
@@ -131,11 +156,6 @@ void Game()
 		step++;
 	}
 #endif
-
-	// 모든 베팅과 카드 배분은 끝났고 공개만이 남았다.
-
-
-
 }
 
 int Boss(int step)

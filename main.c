@@ -19,9 +19,9 @@ int main()
 	remove_cursor();
 	system("mode con cols=160 lines=40");
 
-	init();
+	Init();
 	Game();
 
-	// end ±â·Ï
+	End();
 	getch();
 }

@@ -12,7 +12,7 @@ _player *player; // 1-index
 int Find_Player(char *temp);
 bool Call_Player();
 int Make_Player();
-void init();
+void Init();
 
 void Shuffling(); // 보여주기식
 

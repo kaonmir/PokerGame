@@ -27,6 +27,17 @@ bool Call_Player()
 	fclose(fi);
 	return 0;
 }
+bool Write_Player()
+{
+	FILE *fp = fopen("player.dat", "w");
+
+	fprintf(fp, "%d\n", all_player);
+	for (int i = 1; i <= all_player; i++)
+		fprintf(fp, "%s %d\n", player[i].id, player[i].money);
+
+	fclose(fp);
+	return 0;
+}
 int Make_Player()
 {
 	all_player++;
@@ -34,8 +45,19 @@ int Make_Player()
 	while (1) {
 		printf("사용하실 아이디를 입력해 주세요. >> ");
 		scanf("%s", player[all_player].id);
-		if (player[all_player].id[0] != '!') break;
-		printf("아이디 첫 문자는 !가 될 수 없어요,\n\n");
+		if (player[all_player].id[0] == '!') {
+			printf("아이디 첫 문자는 !가 될 수 없어요,\n\n");
+			continue;
+		}
+		if (streln(player[all_player].id) > MAX_ID_LENGTH) {
+			printf("길이가 10자리를 넘어가면 안되요..\n\n");
+			continue;
+		}
+		if (Find_Player(player[all_player].id)) {
+			printf("이미 있는 아이디에요..\n\n");
+			continue;
+		}
+		break;
 	}
 	//이미 있는 아이디;
 	// ID length
@@ -44,7 +66,7 @@ int Make_Player()
 	player[all_player].money = 100;
 	return all_player;
 }
-void init()
+void Init()
 {
 	if(Call_Player(player)) return;
 #if(!TEST)
@@ -90,6 +112,17 @@ void init()
 	gamer[2] = &(player[2]);
 	return;
 #endif
+}
+void End()
+{
+	system("cls");
+	printf("\n\n\n");
+	printf("     THANK YOUU FOR ENJOYING THIS GAME\n\n");
+	printf("           MADE BY : KAONMIR\n\n");
+	printf("    CHUNANG UNIV. DEPARTMENT OF SOFTWARE\n");
+
+	Write_Player();
+	getch();
 }
 
 void Shuffling()
