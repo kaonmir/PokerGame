@@ -385,7 +385,6 @@ int Royal_Flush(_card player[], int start, int end)
 			return 10 * JOKBO + return_card.number * NUMBER + return_card.shape * SHAPE;
 	return 0;
 }
-
 int Straight_Flush(_card player[], int start, int end)
 {
 	int cnt = 1;

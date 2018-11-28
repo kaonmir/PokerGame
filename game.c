@@ -119,7 +119,7 @@ void Game()
 	for (int i = 1; i <= 7; i++)
 	{
 		for (int j = 1; j <= player_num; j++)
-			Print_Card(player_card[i][j], j, i);
+			if(player_card[i][j].number) Print_Card(player_card[i][j], j, i);
 	}
 	k = Boss(7);
 	gotoxy(0, 3);
@@ -161,6 +161,7 @@ void Game()
 int Boss(int step)
 {
 	int k, max = 0, max_num = 0;
+	int t = step == 7 ? 1 : 3;
 	int *chk;
 	chk = (int *)calloc(player_num+1, sizeof(int));
 	_card temp_card[8];
@@ -170,16 +171,16 @@ int Boss(int step)
 	{
 		for (int j = 1; j <= step; j++) temp_card[j] = player_card[j][i];
 	
-		if (k = Royal_Flush(temp_card, 3, step));			//로얄 스트레이트 플러시
-		else if (k = Straight_Flush(temp_card, 3, step));	//스트레이트 플러시
-		else if (k = Four_of_a_Kind(temp_card, 3, step));	//포카드
-		else if (k = Full_House(temp_card, 3, step));		//풀하우스
-		else if (k = Flush(temp_card, 3, step));			//플러시
-		else if (k = Straight(temp_card, 3, step));			//스트레이트
-		else if (k = Three_of_a_Kind(temp_card, 3, step));	//트리플
-		else if (k = Two_Pair(temp_card, 3, step));			//투페어
-		else if (k = One_Pair(temp_card, 3, step));			//원페어
-		else k = Top(temp_card, 3, step);
+		if (k = Royal_Flush(temp_card, t, step));			//로얄 스트레이트 플러시
+		else if (k = Straight_Flush(temp_card, t, step));	//스트레이트 플러시
+		else if (k = Four_of_a_Kind(temp_card, t, step));	//포카드
+		else if (k = Full_House(temp_card, t, step));		//풀하우스
+		else if (k = Flush(temp_card, t, step));			//플러시
+		else if (k = Straight(temp_card, t, step));			//스트레이트
+		else if (k = Three_of_a_Kind(temp_card, t, step));	//트리플
+		else if (k = Two_Pair(temp_card, t, step));			//투페어
+		else if (k = One_Pair(temp_card, t, step));			//원페어
+		else k = Top(temp_card, t, step);
 
 		if (max < k) { max = k; max_num = i;}
 	}
@@ -253,7 +254,7 @@ void Bet(int temp_player, bool is_boss)
 	}
 
 	betting_money += betting;
-	before_betting = (betting ? betting : before_betting);
+	before_betting = ((betting && is_drop_allin[temp_player]!=ALLIN) ? betting : before_betting);
 	gamer[temp_player]->money -= betting;
 
 	Print_Windows();
@@ -268,20 +269,11 @@ int Find_Gamer(char *id)
 }
 void Betting_Error(int error_num)
 {
-	if (error_num == INPUT_ERROR)
-	{
-		gotoxy(0, 7);
-		printf("잘못입력하셨습니다. 다시 입력하세요.");
-		Sleep(1000);
-		Erase_Line(7);
-	}
-	else if (error_num == MONEY_ERROR)
-	{
-		gotoxy(0, 7);
-		printf("돈이 없어요... ㅠㅠ");
-		Sleep(1000);
-		Erase_Line(7);
-	}
+	gotoxy(0, 7);
+	if (error_num == INPUT_ERROR) printf("잘못입력하셨습니다. 다시 입력하세요.");
+	else if (error_num == MONEY_ERROR) printf("돈이 없어요... ㅠㅠ");
+	Sleep(1000);
+	Erase_Line(7);
 }
 void Print_status(int status, int num)
 {
