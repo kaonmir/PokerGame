@@ -13,6 +13,7 @@ _player *player; // 1-index
 
 int Find_Player(char *temp);
 bool Call_Player();
+void Write_Player();
 int Make_Player();
 void Init();
 

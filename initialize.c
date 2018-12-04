@@ -13,8 +13,10 @@ bool Call_Player()
 	FILE *fi = fopen("player.dat", "r");
 	if (fi == NULL)
 	{
-		printf("ERROR");
-		return 1;
+		FILE *fp = fopen("player.dat", "w");
+		fprintf(fp, "0");
+		fclose(fp);
+		fi = fopen("player.dat", "r");
 	}
 
 	fscanf(fi, "%d", &all_player);
@@ -28,7 +30,7 @@ bool Call_Player()
 	fclose(fi);
 	return 0;
 }
-bool Write_Player()
+void Write_Player()
 {
 	FILE *fp = fopen("player.dat", "w");
 
