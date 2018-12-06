@@ -169,6 +169,8 @@ int Boss(int step)
 
 	for (int i = 1; i <= player_num; i++)
 	{
+		if (is_drop_allin[i] == DROP) continue;
+
 		for (int j = 1; j <= step; j++) temp_card[j] = player_card[j][i];
 	
 		if (k = Royal_Flush(temp_card, t, step));			//로얄 스트레이트 플러시

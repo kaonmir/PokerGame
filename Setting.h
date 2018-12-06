@@ -38,3 +38,8 @@ typedef struct _player {
 int player_num;
 _player **gamer;
 #endif
+
+//DROP한 사람은 이길 수 없다.
+//
+//
+//
