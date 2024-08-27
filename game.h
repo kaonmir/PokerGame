@@ -29,7 +29,7 @@ int *is_drop_allin;
 
 
 void Game();
-int Boss(int step); // ´©°¡ °¡Àå ³ôÀº Ä«µåÆĞ¸¦ °¡Áö°í ÀÖ´Â°¡
+int Boss(int step); // ëˆ„ê°€ ê°€ì¥ ë†’ì€ ì¹´ë“œíŒ¨ë¥¼ ê°€ì§€ê³  ìˆëŠ”ê°€
 void Bet(int temp_player, bool is_boss);
 
 int Find_Gamer(char *id);

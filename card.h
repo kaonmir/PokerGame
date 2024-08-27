@@ -15,23 +15,23 @@
 #define NUMBER 16
 #define SHAPE 1
 
-int card[5][14]; // Ä«µå Áßº¹ Ã¼Å©
+int card[5][14]; // ì¹´ë“œ ì¤‘ë³µ ì²´í¬
 
-// Á·º¸ ³ôÀº ¼øÀ¸·Î
-// ¸®ÅÏ°ªÀº 16Áø¹ıÀ¸·Î Á·º¸, ¼ıÀÚ, ±×¸²
-// ¸ğµç ÇÔ¼ö°¡ ÀÚ½ÅÀÇ ÇÔ¼ö°¡ °¡Àå ³ôÀº ÆĞÀÏ ¶§ °¡Àå Á¤È®ÇÑ °ªÀ» ¸®ÅÏÇÑ´Ù.
-// ¼ıÀÚ 1Àº 14·Î ÇØ¼­ ¸®ÅÏÇÑ´Ù
-int Royal_Flush(_card player[], int start, int end);		//·Î¾â ½ºÆ®·¹ÀÌÆ® ÇÃ·¯½Ã	// 10
-int Straight_Flush(_card player[], int start, int end);		//½ºÆ®·¹ÀÌÆ® ÇÃ·¯½Ã			// 9
-int Four_of_a_Kind(_card player[], int start, int end);		//Æ÷Ä«µå					// 8
-int Full_House(_card player[], int start, int end);			//Ç®ÇÏ¿ì½º					// 7
-int Flush(_card player[], int start, int end);				//ÇÃ·¯½Ã					// 6
-int Straight(_card player[], int start, int end);			//½ºÆ®·¹ÀÌÆ®				// 5
-int Three_of_a_Kind(_card player[], int start, int end);	//Æ®¸®ÇÃ					// 4
-int Two_Pair(_card player[], int start, int end);			//ÅõÆä¾î					// 3
-int One_Pair(_card player[], int start, int end);			//¿øÆä¾î					// 2
-int Top(_card player[], int start, int end);				//³ëÆä¾î					// 1
+// ì¡±ë³´ ë†’ì€ ìˆœìœ¼ë¡œ
+// ë¦¬í„´ê°’ì€ 16ì§„ë²•ìœ¼ë¡œ ì¡±ë³´, ìˆ«ì, ê·¸ë¦¼
+// ëª¨ë“  í•¨ìˆ˜ê°€ ìì‹ ì˜ í•¨ìˆ˜ê°€ ê°€ì¥ ë†’ì€ íŒ¨ì¼ ë•Œ ê°€ì¥ ì •í™•í•œ ê°’ì„ ë¦¬í„´í•œë‹¤.
+// ìˆ«ì 1ì€ 14ë¡œ í•´ì„œ ë¦¬í„´í•œë‹¤
+int Royal_Flush(_card player[], int start, int end);		//ë¡œì–„ ìŠ¤íŠ¸ë ˆì´íŠ¸ í”ŒëŸ¬ì‹œ	// 10
+int Straight_Flush(_card player[], int start, int end);		//ìŠ¤íŠ¸ë ˆì´íŠ¸ í”ŒëŸ¬ì‹œ			// 9
+int Four_of_a_Kind(_card player[], int start, int end);		//í¬ì¹´ë“œ					// 8
+int Full_House(_card player[], int start, int end);			//í’€í•˜ìš°ìŠ¤					// 7
+int Flush(_card player[], int start, int end);				//í”ŒëŸ¬ì‹œ					// 6
+int Straight(_card player[], int start, int end);			//ìŠ¤íŠ¸ë ˆì´íŠ¸				// 5
+int Three_of_a_Kind(_card player[], int start, int end);	//íŠ¸ë¦¬í”Œ					// 4
+int Two_Pair(_card player[], int start, int end);			//íˆ¬í˜ì–´					// 3
+int One_Pair(_card player[], int start, int end);			//ì›í˜ì–´					// 2
+int Top(_card player[], int start, int end);				//ë…¸í˜ì–´					// 1
 
-void Print_Card(_card card, int player_num, int times); // Ä«µå ±×¸² Ãâ·Â ÇÔ¼ö
-_card Make_Card(); // Áßº¹µÇÁö ¾Ê´Â Ä«µå ÇÑ ÀåÀ» ¹İÈ¯ÇÏ´Â ÇÔ¼ö
+void Print_Card(_card card, int player_num, int times); // ì¹´ë“œ ê·¸ë¦¼ ì¶œë ¥ í•¨ìˆ˜
+_card Make_Card(); // ì¤‘ë³µë˜ì§€ ì•ŠëŠ” ì¹´ë“œ í•œ ì¥ì„ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
 #endif

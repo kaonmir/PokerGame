@@ -15,7 +15,7 @@ typedef int bool;
 #define MAX_PLAYER 7
 #define MAX_ID_LENGTH 10
 
-// ¼ıÀÚ°¡ Å¬ ¼ö·Ï Á·º¸°¡ ³ô´Ù
+// ìˆ«ìê°€ í´ ìˆ˜ë¡ ì¡±ë³´ê°€ ë†’ë‹¤
 typedef enum _card_shape {
 	Club = 1,
 	Diamond,
@@ -23,13 +23,13 @@ typedef enum _card_shape {
 	Spade
 } _card_shape;
 
-//Ä«µå ±¸Á¶Ã¼ ¼±¾ğ
+//ì¹´ë“œ êµ¬ì¡°ì²´ ì„ ì–¸
 typedef struct _card {
 	_card_shape shape;
 	int number; //1~13
 } _card;
 
-// ÇÃ·¹ÀÌ¾îÀÇ Á¤º¸
+// í”Œë ˆì´ì–´ì˜ ì •ë³´
 typedef struct _player {
 	char id[MAX_ID_LENGTH];
 	int money;

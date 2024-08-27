@@ -8,7 +8,7 @@
 #define SORT_BY_NUMBER_FOURTEEN 1
 #define SORT_BY_SHAPE 2
 
-void sort(_card *card, int SORT_BY, int start, int end); // ¿À¸§Â÷¼ø
+void sort(_card *card, int SORT_BY, int start, int end); // ì˜¤ë¦„ì°¨ìˆœ
 bool compare(const _card A, const _card B, int SORT_BY);
 
 void Erase_Line(int line);

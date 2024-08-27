@@ -9,7 +9,7 @@ void Game()
 	before_betting = BASIC_BET;
 
 	system("cls");
-	printf("ÃÑ ÇÃ·¹ÀÌ¾î ¼ö: %d", player_num);
+	printf("ì´ í”Œë ˆì´ì–´ ìˆ˜: %d", player_num);
 	Print_Windows();
 	
 #if(!TEST)
@@ -30,7 +30,7 @@ void Game()
 	}
 	getchar();
 
-	// step 3, 4 : ÀÚ½ÅÀÇ Ä«µå¸¦ È®ÀÎÇÏ´Â °úÁ¤
+	// step 3, 4 : ìì‹ ì˜ ì¹´ë“œë¥¼ í™•ì¸í•˜ëŠ” ê³¼ì •
 	char temp_id[MAX_ID_LENGTH];
 	while (1)
 	{
@@ -38,8 +38,8 @@ void Game()
 		Erase_Line(3);
 
 		gotoxy(0, 2);
-		printf("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¸é ³ª¸ÓÁö µÎ Ä«µå°¡ °ø°³µË´Ï´Ù.\n");
-		printf("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä(´ÙÀ½À¸·Î °¡·Á¸é !¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä) >> ");
+		printf("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ë©´ ë‚˜ë¨¸ì§€ ë‘ ì¹´ë“œê°€ ê³µê°œë©ë‹ˆë‹¤.\n");
+		printf("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”(ë‹¤ìŒìœ¼ë¡œ ê°€ë ¤ë©´ !ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”) >> ");
 		fgets(temp_id, sizeof(temp_id), stdin);
 		temp_id[strlen(temp_id) - 1] = '\0';
 		if (temp_id[0] == '!') break;
@@ -48,7 +48,7 @@ void Game()
 		if (k == 0)
 		{
 			gotoxy(0, 5);
-			printf("¾ÆÀÌµğ°¡ Æ²·È½À´Ï´Ù. ¿£ÅÍ Å°¸¦ ´©¸£°í ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.");
+			printf("ì•„ì´ë””ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤. ì—”í„° í‚¤ë¥¼ ëˆ„ë¥´ê³  ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
 			getchar();
 			fflush(stdin);
 			Erase_Line(5);
@@ -57,7 +57,7 @@ void Game()
 			for (int i = 1; i <= 3; i++) Print_Card(player_card[i][k], k, i);
 
 			gotoxy(0, 5);
-			printf("¿£ÅÍ Å°¸¦ ´©¸£°í ´ÙÀ½ »ç¶÷¿¡°Ô È­¸éÀ» ³Ñ±â¼¼¿ä.");
+			printf("ì—”í„° í‚¤ë¥¼ ëˆ„ë¥´ê³  ë‹¤ìŒ ì‚¬ëŒì—ê²Œ í™”ë©´ì„ ë„˜ê¸°ì„¸ìš”.");
 			getchar();
 			fflush(stdin);
 			Erase_Line(5);
@@ -113,7 +113,7 @@ void Game()
 	Erase_Line(5);
 
 	gotoxy(0, 2);
-	printf("ÀÌÁ¦ Ä«µå¸¦ °ø°³ÇÏ°Ú½À´Ï´Ù.");
+	printf("ì´ì œ ì¹´ë“œë¥¼ ê³µê°œí•˜ê² ìŠµë‹ˆë‹¤.");
 	getch();
 
 	for (int i = 1; i <= 7; i++)
@@ -123,7 +123,7 @@ void Game()
 	}
 	k = Boss(7);
 	gotoxy(0, 3);
-	printf("°ÔÀÓÀÇ ¿ì½ÂÀÚ´Â ÇÃ·¹ÀÌ¾î %dÀÔ´Ï´Ù.", k);
+	printf("ê²Œì„ì˜ ìš°ìŠ¹ìëŠ” í”Œë ˆì´ì–´ %dì…ë‹ˆë‹¤.", k);
 	gamer[k]->money += betting_money;
 	Print_Windows();
 	getch();
@@ -173,15 +173,15 @@ int Boss(int step)
 
 		for (int j = 1; j <= step; j++) temp_card[j] = player_card[j][i];
 	
-		if (k = Royal_Flush(temp_card, t, step));			//·Î¾â ½ºÆ®·¹ÀÌÆ® ÇÃ·¯½Ã
-		else if (k = Straight_Flush(temp_card, t, step));	//½ºÆ®·¹ÀÌÆ® ÇÃ·¯½Ã
-		else if (k = Four_of_a_Kind(temp_card, t, step));	//Æ÷Ä«µå
-		else if (k = Full_House(temp_card, t, step));		//Ç®ÇÏ¿ì½º
-		else if (k = Flush(temp_card, t, step));			//ÇÃ·¯½Ã
-		else if (k = Straight(temp_card, t, step));			//½ºÆ®·¹ÀÌÆ®
-		else if (k = Three_of_a_Kind(temp_card, t, step));	//Æ®¸®ÇÃ
-		else if (k = Two_Pair(temp_card, t, step));			//ÅõÆä¾î
-		else if (k = One_Pair(temp_card, t, step));			//¿øÆä¾î
+		if (k = Royal_Flush(temp_card, t, step));			//ë¡œì–„ ìŠ¤íŠ¸ë ˆì´íŠ¸ í”ŒëŸ¬ì‹œ
+		else if (k = Straight_Flush(temp_card, t, step));	//ìŠ¤íŠ¸ë ˆì´íŠ¸ í”ŒëŸ¬ì‹œ
+		else if (k = Four_of_a_Kind(temp_card, t, step));	//í¬ì¹´ë“œ
+		else if (k = Full_House(temp_card, t, step));		//í’€í•˜ìš°ìŠ¤
+		else if (k = Flush(temp_card, t, step));			//í”ŒëŸ¬ì‹œ
+		else if (k = Straight(temp_card, t, step));			//ìŠ¤íŠ¸ë ˆì´íŠ¸
+		else if (k = Three_of_a_Kind(temp_card, t, step));	//íŠ¸ë¦¬í”Œ
+		else if (k = Two_Pair(temp_card, t, step));			//íˆ¬í˜ì–´
+		else if (k = One_Pair(temp_card, t, step));			//ì›í˜ì–´
 		else k = Top(temp_card, t, step);
 
 		if (max < k) { max = k; max_num = i;}
@@ -198,14 +198,14 @@ void Bet(int temp_player, bool is_boss)
 	Erase_Line(5);
 
 	gotoxy(0, 2);
-	printf("%sÀÇ Â÷·ÊÀÔ´Ï´Ù.\n\n", gamer[temp_player]->id);
+	printf("%sì˜ ì°¨ë¡€ì…ë‹ˆë‹¤.\n\n", gamer[temp_player]->id);
 	printf(" 1. Call  2. D.D   3. Half  4. Drop  5. All in\n");
 	if (is_boss) printf(" 6. Full  7. Ping(Boss)  8. Check(Boss)");
 	else printf(" 6. Full");
 	while (1) {
 		Erase_Line(3);
 		gotoxy(0, 3);
-		printf("¾î¶² º£ÆÃÀ» ÇÏ½Ã°Ú½À´Ï±î? ");
+		printf("ì–´ë–¤ ë² íŒ…ì„ í•˜ì‹œê² ìŠµë‹ˆê¹Œ? ");
 		scanf("%d", &n);
 
 		switch (n)
@@ -272,8 +272,8 @@ int Find_Gamer(char *id)
 void Betting_Error(int error_num)
 {
 	gotoxy(0, 7);
-	if (error_num == INPUT_ERROR) printf("Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.");
-	else if (error_num == MONEY_ERROR) printf("µ·ÀÌ ¾ø¾î¿ä... ¤Ğ¤Ğ");
+	if (error_num == INPUT_ERROR) printf("ì˜ëª»ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
+	else if (error_num == MONEY_ERROR) printf("ëˆì´ ì—†ì–´ìš”... ã… ã… ");
 	Sleep(1000);
 	Erase_Line(7);
 }
@@ -296,12 +296,12 @@ void Print_status(int status, int num)
 void Print_Windows()
 {
 	gotoxy(WINDOWS_X_BETTING, 0);
-	printf("ÃÑ º£ÆÃ ±İ¾×  : %d", betting_money);
+	printf("ì´ ë² íŒ… ê¸ˆì•¡  : %d", betting_money);
 	gotoxy(WINDOWS_X_BETTING, 1);
-	printf("ÀÌÀü º£ÆÃ ±İ¾×: %d", before_betting);
+	printf("ì´ì „ ë² íŒ… ê¸ˆì•¡: %d", before_betting);
 	for (int i = 1; i <= player_num; i++)
 	{
 		gotoxy(WINDOWS_X_MONEY, i - 1);
-		printf("Player %dÀÇ ÄÚÀÎ: %d         ", i, gamer[i]->money);
+		printf("Player %dì˜ ì½”ì¸: %d         ", i, gamer[i]->money);
 	}
 }

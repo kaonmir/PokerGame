@@ -8,16 +8,16 @@ void Print_Card(_card card, int player_num, int times)
 	switch (card.shape)
 	{
 	case Diamond:
-		shape[0] = "¡ß";
+		shape[0] = "â—†";
 		break;
 	case Club:
-		shape[0] = "¢À";
+		shape[0] = "â™£";
 		break;
 	case Hearts:
-		shape[0] = "¢¾";
+		shape[0] = "â™¥";
 		break;
 	case Spade:
-		shape[0] = "¢¼";
+		shape[0] = "â™ ";
 		break;
 	default:
 		break;
@@ -25,43 +25,43 @@ void Print_Card(_card card, int player_num, int times)
 	switch (card.number)
 	{
 	case 1:
-		number[0] = "¨ç";
+		number[0] = "â‘ ";
 		break;
 	case 2:
-		number[0] = "¨è";
+		number[0] = "â‘¡";
 		break;
 	case 3:
-		number[0] = "¨é";
+		number[0] = "â‘¢";
 		break;
 	case 4:
-		number[0] = "¨ê";
+		number[0] = "â‘£";
 		break;
 	case 5:
-		number[0] = "¨ë";
+		number[0] = "â‘¤";
 		break;
 	case 6:
-		number[0] = "¨ì";
+		number[0] = "â‘¥";
 		break;
 	case 7:
-		number[0] = "¨í";
+		number[0] = "â‘¦";
 		break;
 	case 8:
-		number[0] = "¨î";
+		number[0] = "â‘§";
 		break;
 	case 9:
-		number[0] = "¨ï";
+		number[0] = "â‘¨";
 		break;
 	case 10:
-		number[0] = "¨ğ";
+		number[0] = "â‘©";
 		break;
 	case 11:
-		number[0] = "£Ê";
+		number[0] = "ï¼ª";
 		break;
 	case 12:
-		number[0] = "£Ñ";
+		number[0] = "ï¼±";
 		break;
 	case 13:
-		number[0] = "£Ë";
+		number[0] = "ï¼«";
 		break;
 	default:
 		break;
@@ -72,264 +72,264 @@ void Print_Card(_card card, int player_num, int times)
 
 	if (card.number) {
 		gotoxy(x, y);
-		printf("¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤");
+		printf("â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”");
 		gotoxy(x, y + 1);
-		printf("¦¢ %s      ", number[0]);
-		if(card.shape == Club)	printf("¢¿");
-		else if (card.shape == Spade) printf("¢»");
+		printf("â”‚ %s      ", number[0]);
+		if(card.shape == Club)	printf("â™§");
+		else if (card.shape == Spade) printf("â™¤");
 		else {
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
 			printf("%s", shape[0]);
 			SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 		}
-		printf("¦¢");
+		printf("â”‚");
 	}
 	switch (card.number)
 	{
 	case 0: {
 		gotoxy(x, y);
-		printf("¦£¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¤");
+		printf("â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”");
 		gotoxy(x, y + 1);
-		printf("¦¢ ¡Ø¡Ø¡Ø¡Ø¡Ø¦¢");
+		printf("â”‚ â€»â€»â€»â€»â€»â”‚");
 		gotoxy(x, y + 2);
-		printf("¦¢ ¡Ø¡Ø¡Ø¡Ø¡Ø¦¢");
+		printf("â”‚ â€»â€»â€»â€»â€»â”‚");
 		gotoxy(x, y + 3);
-		printf("¦¢ ¡Ø¡Ø¡Ø¡Ø¡Ø¦¢");
+		printf("â”‚ â€»â€»â€»â€»â€»â”‚");
 		gotoxy(x, y + 4);
-		printf("¦¢ ¡Ø¡Ø¡Ø¡Ø¡Ø¦¢");
+		printf("â”‚ â€»â€»â€»â€»â€»â”‚");
 		gotoxy(x, y + 5);
-		printf("¦¢ ¡Ø¡Ø¡Ø¡Ø¡Ø¦¢");
+		printf("â”‚ â€»â€»â€»â€»â€»â”‚");
 		gotoxy(x, y + 6);
-		printf("¦¢ ¡Ø¡Ø¡Ø¡Ø¡Ø¦¢");
+		printf("â”‚ â€»â€»â€»â€»â€»â”‚");
 		gotoxy(x, y + 7);
-		printf("¦¢ ¡Ø¡Ø¡Ø¡Ø¡Ø¦¢");
+		printf("â”‚ â€»â€»â€»â€»â€»â”‚");
 		gotoxy(x, y + 8);
-		printf("¦¢ ¡Ø¡Ø¡Ø¡Ø¡Ø¦¢");
+		printf("â”‚ â€»â€»â€»â€»â€»â”‚");
 		gotoxy(x, y + 9);
-		printf("¦¢ ¡Ø¡Ø¡Ø¡Ø¡Ø¦¢");
+		printf("â”‚ â€»â€»â€»â€»â€»â”‚");
 		gotoxy(x, y + 10);
-		printf("¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥");
+		printf("â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜");
 		break;
 	}
 	case 1: {
 		gotoxy(x, y + 2);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 3);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 4);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 5);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		gotoxy(x, y + 6);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 7);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 8);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		break;
 	}
 	case 2: {
 		gotoxy(x, y + 2);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 3);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		gotoxy(x, y + 4);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 5);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 6);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 7);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		gotoxy(x, y + 8);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		break;
 	}
 	case 3: {
 		gotoxy(x, y + 2);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 4);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 5);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		gotoxy(x, y + 6);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 7);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 8);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		break;
 	}
 	case 4: {
 		gotoxy(x, y + 2);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 4);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 5);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 6);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 7);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 8);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		break;
 	}
 	case 5: {
 		gotoxy(x, y + 2);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 4);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 5);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		gotoxy(x, y + 6);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 7);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 8);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		break;
 	}
 	case 6: {
 		gotoxy(x, y + 2);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 4);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 5);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 6);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 7);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 8);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		break;
 	}
 	case 7: {
 		gotoxy(x, y + 2);
-		printf("¦¢   %s  %s  ¦¢", shape[0], shape[0]);
+		printf("â”‚   %s  %s  â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 4);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 5);
-		printf("¦¢  %s %s %s ¦¢", shape[0], shape[0], shape[0]);
+		printf("â”‚  %s %s %s â”‚", shape[0], shape[0], shape[0]);
 		gotoxy(x, y + 6);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 7);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 8);
-		printf("¦¢   %s  %s  ¦¢", shape[0], shape[0]);
+		printf("â”‚   %s  %s  â”‚", shape[0], shape[0]);
 		break;
 	}
 	case 8: {
 		gotoxy(x, y + 2);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 4);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 5);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 6);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 7);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 8);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		break;
 	}
 	case 9: {
 		gotoxy(x, y + 2);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 4);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 5);
-		printf("¦¢  %s %s %s ¦¢", shape[0], shape[0], shape[0]);
+		printf("â”‚  %s %s %s â”‚", shape[0], shape[0], shape[0]);
 		gotoxy(x, y + 6);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 7);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 8);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		break;
 	}
 	case 10: {
 		gotoxy(x, y + 2);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		gotoxy(x, y + 4);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 5);
-		printf("¦¢           ¦¢");
+		printf("â”‚           â”‚");
 		gotoxy(x, y + 6);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 7);
-		printf("¦¢     %s    ¦¢", shape[0]);
+		printf("â”‚     %s    â”‚", shape[0]);
 		gotoxy(x, y + 8);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		break;
 	}
 	case 11: {
 		gotoxy(x, y + 2);
-		printf("¦¢        %s ¦¢", shape[0]);
+		printf("â”‚        %s â”‚", shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢        %s ¦¢", shape[0]);
+		printf("â”‚        %s â”‚", shape[0]);
 		gotoxy(x, y + 4);
-		printf("¦¢        %s ¦¢", shape[0]);
+		printf("â”‚        %s â”‚", shape[0]);
 		gotoxy(x, y + 5);
-		printf("¦¢        %s ¦¢", shape[0]);
+		printf("â”‚        %s â”‚", shape[0]);
 		gotoxy(x, y + 6);
-		printf("¦¢        %s ¦¢", shape[0]);
+		printf("â”‚        %s â”‚", shape[0]);
 		gotoxy(x, y + 7);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 8);
-		printf("¦¢   %s%s%s  ¦¢", shape[0], shape[0], shape[0]);
+		printf("â”‚   %s%s%s  â”‚", shape[0], shape[0], shape[0]);
 		break;
 	}
 	case 12: {
 		gotoxy(x, y + 2);
-		printf("¦¢   %s%s%s  ¦¢", shape[0], shape[0], shape[0]);
+		printf("â”‚   %s%s%s  â”‚", shape[0], shape[0], shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 4);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 5);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 6);
-		printf("¦¢  %s    %s ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s    %s â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 7);
-		printf("¦¢  %s  %s   ¦¢", shape[0], shape[0]);
+		printf("â”‚  %s  %s   â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 8);
-		printf("¦¢   %s%s %s ¦¢", shape[0], shape[0], shape[0]);
+		printf("â”‚   %s%s %s â”‚", shape[0], shape[0], shape[0]);
 		break;
 	}
 	case 13: {
 		gotoxy(x, y + 2);
-		printf("¦¢ %s      %s¦¢", shape[0], shape[0]);
+		printf("â”‚ %s      %sâ”‚", shape[0], shape[0]);
 		gotoxy(x, y + 3);
-		printf("¦¢ %s    %s  ¦¢", shape[0], shape[0]);
+		printf("â”‚ %s    %s  â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 4);
-		printf("¦¢ %s  %s    ¦¢", shape[0], shape[0]);
+		printf("â”‚ %s  %s    â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 5);
-		printf("¦¢ %s%s      ¦¢", shape[0], shape[0]);
+		printf("â”‚ %s%s      â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 6);
-		printf("¦¢ %s  %s    ¦¢", shape[0], shape[0]);
+		printf("â”‚ %s  %s    â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 7);
-		printf("¦¢ %s    %s  ¦¢", shape[0], shape[0]);
+		printf("â”‚ %s    %s  â”‚", shape[0], shape[0]);
 		gotoxy(x, y + 8);
-		printf("¦¢ %s      %s¦¢", shape[0], shape[0]);
+		printf("â”‚ %s      %sâ”‚", shape[0], shape[0]);
 		break;
 	}
 	default:
@@ -337,9 +337,9 @@ void Print_Card(_card card, int player_num, int times)
 	}
 	if (card.number) {
 		gotoxy(x, y + 9);
-		printf("¦¢         %s¦¢", number[0]);
+		printf("â”‚         %sâ”‚", number[0]);
 		gotoxy(x, y + 10);
-		printf("¦¦¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¥");
+		printf("â””â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜");
 	}
 }
 _card Make_Card()

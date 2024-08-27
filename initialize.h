@@ -17,6 +17,6 @@ void Write_Player();
 int Make_Player();
 void Init();
 
-void Shuffling(); // º¸¿©ÁÖ±â½Ä
+void Shuffling(); // ë³´ì—¬ì£¼ê¸°ì‹
 
 #endif

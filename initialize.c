@@ -45,25 +45,25 @@ int Make_Player()
 {
 
 	while (1) {
-		printf("»ç¿ëÇÏ½Ç ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä. >> ");
+		printf("ì‚¬ìš©í•˜ì‹¤ ì•„ì´ë””ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”. >> ");
 		scanf("%s", player[all_player+1].id);
 		if (player[all_player + 1].id[0] == '!') {
-			printf("¾ÆÀÌµğ Ã¹ ¹®ÀÚ´Â !°¡ µÉ ¼ö ¾ø¾î¿ä,\n\n");
+			printf("ì•„ì´ë”” ì²« ë¬¸ìëŠ” !ê°€ ë  ìˆ˜ ì—†ì–´ìš”,\n\n");
 			continue;
 		}
 		if (strlen(player[all_player + 1].id) > MAX_ID_LENGTH) {
-			printf("±æÀÌ°¡ 10ÀÚ¸®¸¦ ³Ñ¾î°¡¸é ¾ÈµÇ¿ä..\n\n");
+			printf("ê¸¸ì´ê°€ 10ìë¦¬ë¥¼ ë„˜ì–´ê°€ë©´ ì•ˆë˜ìš”..\n\n");
 			continue;
 		}
 		if (Find_Player(player[all_player + 1].id)) {
-			printf("ÀÌ¹Ì ÀÖ´Â ¾ÆÀÌµğ¿¡¿ä..\n\n");
+			printf("ì´ë¯¸ ìˆëŠ” ì•„ì´ë””ì—ìš”..\n\n");
 			continue;
 		}
 		break;
 	}
 	all_player++;
 
-	printf("°¡ÀÔ ±â³ä 100ÄÚÀÎÀ» Áö±ŞÇÕ´Ï´Ù.\n");
+	printf("ê°€ì… ê¸°ë… 100ì½”ì¸ì„ ì§€ê¸‰í•©ë‹ˆë‹¤.\n");
 	player[all_player].money = 100;
 	return all_player;
 }
@@ -72,20 +72,20 @@ void Init()
 	if(Call_Player(player)) return;
 #if(!TEST)
 	while (1) {
-		printf("ÇÃ·¹ÀÌ¾îÀÇ ¼ö¸¦ ÀÔ·ÂÇÏ¼¼¿ä >> ");
-		scanf("%d", &player_num);									 // a ³ÖÀ¸¸é ¿¡·¯³­´Ù.
+		printf("í”Œë ˆì´ì–´ì˜ ìˆ˜ë¥¼ ì…ë ¥í•˜ì„¸ìš” >> ");
+		scanf("%d", &player_num);									 // a ë„£ìœ¼ë©´ ì—ëŸ¬ë‚œë‹¤.
 		if (1 < player_num && player_num <= MAX_PLAYER) break;
-		printf("ÀÔ·ÂÀÌ Àß¸øµÇ¾ú½À´Ï´Ù.\n´Ù½Ã ÀÔ·Â ÇØÁÖ¼¼¿ä\n\n");
+		printf("ì…ë ¥ì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤.\në‹¤ì‹œ ì…ë ¥ í•´ì£¼ì„¸ìš”\n\n");
 	}
 	system("cls");
-	printf("ÃÑ ÇÃ·¹ÀÌ¾îÀÇ ¼ö : %d\n", player_num);
+	printf("ì´ í”Œë ˆì´ì–´ì˜ ìˆ˜ : %d\n", player_num);
 	gamer = (_player **)malloc(sizeof(_player *) * (player_num + 1));
 
 	for (int i = 1; i <= player_num; i++)
 	{
 		char temp[MAX_ID_LENGTH];
 		while(1) {
-			printf("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä(°¡ÀÔÇÏ½Ç·Á¸é !¸¦ ÀÔ·ÂÇÏ¼¼¿ä) >> ");
+			printf("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”(ê°€ì…í•˜ì‹¤ë ¤ë©´ !ë¥¼ ì…ë ¥í•˜ì„¸ìš”) >> ");
 			scanf("%s", temp);
 
 			int k;
@@ -98,15 +98,15 @@ void Init()
 				break;
 			}
 
-			if(!k)	printf("¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n´Ù½Ã ÀÔ·Â ÇØÁÖ¼¼¿ä\n\n");
-			else if (chkplayer[k]) printf("ÀÌ¹Ì µî·ÏµÇ¾îÀÖ½À´Ï´Ù.\n´Ù½Ã ÀÔ·Â ÇØÁÖ¼¼¿ä\n\n");
+			if(!k)	printf("ì•„ì´ë””ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\në‹¤ì‹œ ì…ë ¥ í•´ì£¼ì„¸ìš”\n\n");
+			else if (chkplayer[k]) printf("ì´ë¯¸ ë“±ë¡ë˜ì–´ìˆìŠµë‹ˆë‹¤.\në‹¤ì‹œ ì…ë ¥ í•´ì£¼ì„¸ìš”\n\n");
 		}
-		printf("ÇÃ·¹ÀÌ¾î %d¿¡ %s´ÔÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.\n\n", i, gamer[i]->id);
+		printf("í”Œë ˆì´ì–´ %dì— %së‹˜ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.\n\n", i, gamer[i]->id);
 	}
 
 	Sleep(1000);
 	system("cls");
-	printf("ÀÚ ±×·³ °ÔÀÓÀ» ½ÃÀÛÇÏ°Ú½À´Ï´Ù.\n");
+	printf("ì ê·¸ëŸ¼ ê²Œì„ì„ ì‹œì‘í•˜ê² ìŠµë‹ˆë‹¤.\n");
 	Sleep(1000);
 	Shuffling();
 #else
@@ -132,11 +132,11 @@ void Shuffling()
 {
 	system("cls");
 	gotoxy(50, 3);
-	printf("Ä«µå¸¦ ¼¯°í ÀÖ¾î¿ä:)");
+	printf("ì¹´ë“œë¥¼ ì„ê³  ìˆì–´ìš”:)");
 	for (int i = 0; i < 100; i++)
 	{
 		gotoxy((i%10)*2 + 50, 5 + i/10);
-		printf("¡á");
+		printf("â– ");
 		gotoxy(70, 3);
 		printf("(%2d%%)", i + 1);
 
