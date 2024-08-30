@@ -39,7 +39,7 @@ void Write_Player()
 		fprintf(fp, "%s %d\n", player[i].id, player[i].money);
 
 	fclose(fp);
-	return 0;
+	return;
 }
 int Make_Player()
 {
