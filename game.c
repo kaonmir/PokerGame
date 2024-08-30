@@ -1,4 +1,5 @@
 #include "game.h"
+#include <conio.h>
 
 void Game()
 {
